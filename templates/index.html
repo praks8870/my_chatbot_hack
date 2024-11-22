@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+        .chat-box {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .chat-history {
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #fff;
+        }
+        .chat-message {
+            margin: 10px 0;
+        }
+        .chat-message.user {
+            text-align: right;
+        }
+        .chat-message.bot {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-box">
+        <h1>Chatbot</h1>
+        <div class="chat-history" id="chatHistory">
+            {% for message in chat_history %}
+                <div class="chat-message user"><strong>You:</strong> {{ message.user }}</div>
+                <div class="chat-message bot"><strong>Bot:</strong> {{ message.bot }}</div>
+            {% endfor %}
+        </div>
+        <form id="chatForm">
+            <input type="text" id="messageInput" placeholder="Type your message here..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <script>
+        const chatHistory = document.getElementById("chatHistory");
+        const chatForm = document.getElementById("chatForm");
+        const messageInput = document.getElementById("messageInput");
+
+        chatForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const userMessage = messageInput.value;
+            if (!userMessage) return;
+
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ message: userMessage }),
+            });
+            const data = await response.json();
+
+            // Add user and bot messages to chat history
+            const userDiv = document.createElement("div");
+            userDiv.className = "chat-message user";
+            userDiv.innerHTML = `<strong>You:</strong> ${data.user}`;
+            chatHistory.appendChild(userDiv);
+
+            const botDiv = document.createElement("div");
+            botDiv.className = "chat-message bot";
+            botDiv.innerHTML = `<strong>Bot:</strong> ${data.bot}`;
+            chatHistory.appendChild(botDiv);
+
+            // Scroll to the bottom
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            // Clear the input field
+            messageInput.value = "";
+        });
+    </script>
+</body>
+</html>
