@@ -193,7 +193,13 @@
     },
     {
       "tag": "solar_sensor_data",
-      "patterns": ["What is the latest solar sensor data?", "Tell me the latest solar sensor data", "Give me the most recent solar sensor reading", "What is the solar sensor status?"],
+      "patterns": ["What is the latest solar sensor data?", "Tell me the latest solar sensor data", "Give me the most recent solar sensor reading", 
+                    "What is the solar sensor status?",
+                  "solar sensor level now",
+                  "solar level",
+                "solar sensor level",
+                  "current solar sensor level",
+                "current solar level"],
       "responses": [
         "The latest solar sensor data is {solar_data}.",
         "The most recent solar sensor reading is {solar_data}.",
@@ -203,7 +209,14 @@
     },
     {
       "tag": "water_sensor_data",
-      "patterns": ["What is the latest water sensor data?", "Tell me the latest water sensor data", "Give me the most recent water sensor reading", "What is the water sensor status?"],
+      "patterns": ["What is the latest water sensor data?", 
+                  "Tell me the latest water sensor data", 
+                  "Give me the most recent water sensor reading", 
+                  "What is the water sensor status?",
+                  "current water sensor level",
+                  "current water level",
+                  "water lever",
+                  "water sensor level"],
       "responses": [
         "The latest water sensor data is {water_data}.",
         "The most recent water sensor reading is {water_data}.",
@@ -213,7 +226,11 @@
     },
     {
       "tag": "gasesensor_data",
-      "patterns": ["What is the latest gasesensor data?", "Tell me the gasesensor status", "Give me the latest gasesensor reading", "What is the gasesensor status?"],
+      "patterns": ["What is the latest gasesensor data?", "Tell me the gasesensor status", "Give me the latest gasesensor reading", "What is the gasesensor status?",
+                    "current gas level",
+                  "current gas sensor level",
+                "gas level",
+                      "gas level now"],
       "responses": [
         "The latest gasesensor data is {gasesensor_data}.",
         "The most recent gasesensor reading is {gasesensor_data}.",
