@@ -66,7 +66,7 @@
       ],
       "responses": [
         "I can help monitor water levels, detect gases, and optimize solar energy usage.",
-        "I provide insights into water sensors, actuators, temperature control, and energy management.",
+        "I provide insights into water sensors, gasesensors, temperature control, and energy management.",
         "This system automates water tank management, ensuring efficiency and safety.",
         "I assist in conserving water, managing power, and ensuring sustainability.",
         "From water sensors to power management, I’ve got you covered!"
@@ -141,20 +141,20 @@
       ]
     },
     {
-      "tag": "actuator",
+      "tag": "gasesensor",
       "patterns": [
-        "What is an actuator?",
-        "How do actuators work?",
-        "Explain actuators in water tanks.",
-        "What role do actuators play?",
-        "Are actuators used in this system?"
+        "What is an gasesensor?",
+        "How do gasesensors work?",
+        "Explain gasesensors in water tanks.",
+        "What role do gasesensors play?",
+        "Are gasesensors used in this system?"
       ],
       "responses": [
-        "An actuator is a device that moves or controls a mechanism, such as opening or closing valves in the water tank.",
-        "Actuators in this system automate the process of managing water flow based on sensor readings.",
+        "An gasesensor is a device that moves or controls a mechanism, such as opening or closing valves in the water tank.",
+        "gasesensors in this system automate the process of managing water flow based on sensor readings.",
         "They translate the signals from sensors into mechanical actions to control the system.",
-        "In water tanks, actuators play a key role in ensuring accurate water level management.",
-        "Yes, actuators are a part of the automated water tank management system!"
+        "In water tanks, gasesensors play a key role in ensuring accurate water level management.",
+        "Yes, gasesensors are a part of the automated water tank management system!"
       ]
     },
     {
@@ -187,8 +187,38 @@
         "Why did the water pump tell jokes? To raise everyone's level!",
         "What’s a water tank’s favorite dance? The sprinkler!",
         "Why don’t water sensors ever lie? Because they always level with you!",
-        "What did the actuator say to the valve? 'Open up, it’s time to flow!'",
+        "What did the gasesensor say to the valve? 'Open up, it’s time to flow!'",
         "How does the water tank stay calm? It keeps its levels balanced!"
+      ]
+    },
+    {
+      "tag": "solar_sensor_data",
+      "patterns": ["What is the latest solar sensor data?", "Tell me the latest solar sensor data", "Give me the most recent solar sensor reading", "What is the solar sensor status?"],
+      "responses": [
+        "The latest solar sensor data is {solar_data}.",
+        "The most recent solar sensor reading is {solar_data}.",
+        "Solar sensor data: {solar_data}.",
+        "Current solar sensor status: {solar_data}."
+      ]
+    },
+    {
+      "tag": "water_sensor_data",
+      "patterns": ["What is the latest water sensor data?", "Tell me the latest water sensor data", "Give me the most recent water sensor reading", "What is the water sensor status?"],
+      "responses": [
+        "The latest water sensor data is {water_data}.",
+        "The most recent water sensor reading is {water_data}.",
+        "Water sensor status: {water_data}.",
+        "Current water sensor level: {water_data}."
+      ]
+    },
+    {
+      "tag": "gasesensor_data",
+      "patterns": ["What is the latest gasesensor data?", "Tell me the gasesensor status", "Give me the latest gasesensor reading", "What is the gasesensor status?"],
+      "responses": [
+        "The latest gasesensor data is {gasesensor_data}.",
+        "The most recent gasesensor reading is {gasesensor_data}.",
+        "gasesensor status: {gasesensor_data}.",
+        "Current gasesensor status: {gasesensor_data}."
       ]
     }
   ]

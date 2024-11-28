@@ -9,9 +9,12 @@ from nltk.stem.porter import PorterStemmer
 import torch.nn as nn
 import torch.optim as optim
 from flask_session import Session
+import requests
 
 app = Flask(__name__)
+
 nltk.download('punkt')
+
 # Configure session for chat history
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -89,7 +92,7 @@ num_epochs = 1000
 
 # Load or train the model
 model = NeuralNet(input_size, hidden_size, output_size)
-model_path = "chatbot_model.pth"
+model_path = "model_data.pth"
 
 if os.path.exists(model_path):
     model.load_state_dict(torch.load(model_path))
@@ -115,8 +118,48 @@ else:
     torch.save(model.state_dict(), model_path)
     print("Model trained and saved!")
 
-# Chatbot logic
+
+def get_api_data():
+    api_url = "https://iot1.innotrat.in/api/product/get-data"
+
+    data = {
+        "productID": "3c5add95-a638-4481-803d-027791a6fd59"  # Correct key: ProductID
+    }
+
+    # Headers
+    headers = {
+        "Content-Type": "application/json"  
+    }
+
+    try:
+        response = requests.post(api_url, json=data, headers=headers)
+        response.raise_for_status()
+
+        response_data = response.json()
+        
+        sensor_data_list = response_data["data"]["data"]
+        
+        last_entry = sensor_data_list[-1]
+        
+        float_sensor = last_entry["floatSensor"]
+        gase_sensor = last_entry["gaseSensor"]
+        solar_sensor = last_entry["solar-sensor"]
+
+        sensor_data = {
+            "solar_data": solar_sensor,  
+            "water_data": float_sensor,
+            "gasesensor_data": gase_sensor  
+        }
+
+    except requests.exceptions.RequestException as e:
+        return {"solar_data": "No data", "water_data": "No data", "gasesensor_data": "No data"}
+
+    return sensor_data
+
 def get_response(user_text):
+    # Get the latest sensor data
+    sensor_data = get_api_data()
+    
     sentence = tokenize(user_text)
     X = bag_of_words(sentence, all_words)
     X = X.reshape(1, X.shape[0])
@@ -132,7 +175,8 @@ def get_response(user_text):
     if prob.item() > 0.75:
         for intent in intents['intents']:
             if intent['tag'] == tag:
-                return random.choice(intent['responses'])
+                response = random.choice(intent['responses'])
+                return response.format(**sensor_data)
     else:
         return "I do not understand..."
 
@@ -156,4 +200,4 @@ def chat():
     return jsonify(chat_entry)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
