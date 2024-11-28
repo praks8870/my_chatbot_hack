@@ -201,10 +201,10 @@
                   "current solar sensor level",
                 "current solar level"],
       "responses": [
-        "The latest solar sensor data is {solar_data}.",
-        "The most recent solar sensor reading is {solar_data}.",
-        "Solar sensor data: {solar_data}.",
-        "Current solar sensor status: {solar_data}."
+        "The latest solar sensor data is {solar_data} W/m^2.",
+        "The most recent solar sensor reading is {solar_data} W/m^2.",
+        "Solar sensor data: {solar_data} W/m^2.",
+        "Current solar sensor status: {solar_data} W/m^2."
       ]
     },
     {
@@ -218,10 +218,10 @@
                   "water lever",
                   "water sensor level"],
       "responses": [
-        "The latest water sensor data is {water_data}.",
-        "The most recent water sensor reading is {water_data}.",
-        "Water sensor status: {water_data}.",
-        "Current water sensor level: {water_data}."
+        "The latest water sensor data is {water_data} ft.",
+        "The most recent water sensor reading is {water_data} ft.",
+        "Water sensor status: {water_data} ft.",
+        "Current water sensor level: {water_data} ft."
       ]
     },
     {
@@ -232,10 +232,10 @@
                 "gas level",
                       "gas level now"],
       "responses": [
-        "The latest gasesensor data is {gasesensor_data}.",
-        "The most recent gasesensor reading is {gasesensor_data}.",
-        "gasesensor status: {gasesensor_data}.",
-        "Current gasesensor status: {gasesensor_data}."
+        "The latest gasesensor data is {gasesensor_data} ppm.",
+        "The most recent gasesensor reading is {gasesensor_data} ppm.",
+        "gasesensor status: {gasesensor_data} ppm.",
+        "Current gasesensor status: {gasesensor_data} ppm."
       ]
     }
   ]
